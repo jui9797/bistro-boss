@@ -1,0 +1,50 @@
+import { createBrowserRouter } from "react-router-dom";
+
+import Error from "./error/Error ";
+
+import Main from "../main/Main";
+import Home from "../pages/home/Home";
+import Menu from "../pages/Menu/Menu";
+import Order from "../pages/order/Order";
+import Login from "../pages/Login";
+import SignUp from "../pages/SignUp";
+import PrivateRoute from "./PrivateRoute";
+import MyOrder from "../pages/myOrder/MyOrder";
+
+export const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Main></Main>,
+      errorElement:<Error></Error>,
+      children:[
+        {
+            path:'/',
+            element:<Home></Home>
+        },
+        {
+          path:'menu',
+          element:<Menu></Menu>
+        },
+        {
+          path:'/order',
+          element:<Order></Order>
+        },
+        {
+          path:'/order/:category',
+          element:<Order></Order>
+        },
+        {
+          path:'/login',
+          element:<Login></Login>
+        },
+        {
+          path:'/signup',
+          element:<SignUp></SignUp>
+        },
+        {
+          path:'/myOrder',
+          element:<PrivateRoute><MyOrder></MyOrder></PrivateRoute>
+        }
+      ]
+    },
+  ]);
