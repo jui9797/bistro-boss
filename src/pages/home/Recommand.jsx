@@ -11,7 +11,7 @@ const Recommand = () => {
             const popularMenu =data.filter(item => item.category === 'offered')
             setMenu(popularMenu)
         })
-    })
+    },[])
     return (
         <div className='my-10 lg:my-20'>
             <SectionTitle subHeading={'Should Try'} heading={'CHEF RECOMMENDS'}></SectionTitle>

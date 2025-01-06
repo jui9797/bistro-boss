@@ -1,16 +1,23 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
+import { TiShoppingCart } from "react-icons/ti";
+import useCart from '../hooks/useCart';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
-
+   const [cart] =useCart()
+   console.log(cart)
     const links = <>
         <NavLink to='/'>Home</NavLink>
 
         <NavLink to='/menu'>Ourmenu</NavLink>
         <NavLink to='/order'>Order Now</NavLink>
         <NavLink to='/myOrder'>My Order</NavLink>
+        <NavLink to='/dashboard'><button className="btn">
+        <TiShoppingCart />
+        <div className="badge">+{cart.length}</div>
+        </button></NavLink>
 
     </>
 
@@ -68,8 +75,8 @@ const Navbar = () => {
                                         {user && (
                                             <>
                                                 <div className='flex'>
-                                                <img title={user?.displayName} className='w-10 h-10 rounded-full' src={user.photoURL} alt="User Profile" />
-                                                <button onClick={handleLogout} className="btn p-1">Logout</button>
+                                                    <img title={user?.displayName} className='w-10 h-10 rounded-full' src={user.photoURL} alt="User Profile" />
+                                                    <button onClick={handleLogout} className="btn p-1">Logout</button>
                                                 </div>
                                             </>
                                         )}
